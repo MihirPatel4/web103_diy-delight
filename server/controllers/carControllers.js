@@ -42,7 +42,7 @@ const createCar = async (req, res) => {
     `,
       [is_convertible, exterior, roof, wheels, interior, price, name],
     );
-    res.status(201).json(results.rows);
+    res.status(201).json(results.rows[0]);
   } catch (error) {
     res.status(409).json({ error: error.message });
   }
@@ -61,7 +61,7 @@ const editCar = async (req, res) => {
     `,
       [is_convertible, exterior, roof, wheels, interior, price, name, id],
     );
-    res.status(200).json(results.rows);
+    res.status(200).json(results.rows[0]);
   } catch (error) {
     res.status(409).json({ error: error.message });
   }
