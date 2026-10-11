@@ -2,7 +2,7 @@ import express from "express";
 import path from "path";
 import favicon from "serve-favicon";
 import dotenv from "dotenv";
-import carRouter from "./routes/carRoutes";
+import carRouter from "./routes/carRoutes.js";
 
 dotenv.config();
 
