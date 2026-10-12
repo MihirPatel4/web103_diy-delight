@@ -16,7 +16,7 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      '/api': {
+      '/cars': {
         target: 'http://localhost:3000'
       }
     }
