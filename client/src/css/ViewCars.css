@@ -1,0 +1,89 @@
+#root .custom-cars-page {
+    display: block;
+    width: min(1100px, calc(100% - 32px));
+    margin: 48px auto;
+}
+
+.custom-cars-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.custom-car-grid {
+    display: grid;
+    margin-top: 100px;
+    gap: 36px;
+    justify-content: center;
+}
+
+.custom-car-card {
+    margin: 0;
+    padding: 52px;
+    background: rgba(0, 0, 0, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    width: 1024px;
+}
+
+.custom-car-card > header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 18px;
+    background-color: transparent;
+}
+
+.custom-car-card > header strong {
+    color: #fff;
+    font-size: 1.2rem;
+    white-space: nowrap;
+}
+
+.custom-car-card dl {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 24px;
+}
+
+.custom-car-card dl > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.custom-car-card dt {
+    color: #d0d0d0;
+}
+
+.custom-car-card dd {
+    margin: 0;
+    text-align: right;
+}
+
+.empty-cars {
+    padding: 20px 0;
+    color: #d0d0d0;
+}
+
+@media (max-width: 600px) {
+    .custom-cars-page {
+        margin: 24px auto;
+    }
+
+    .custom-car-card {
+        padding: 20px;
+    }
+
+    .custom-cars-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .custom-car-card dl {
+        grid-template-columns: 1fr;
+    }
+}
