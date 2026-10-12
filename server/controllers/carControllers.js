@@ -32,15 +32,15 @@ const getCar = async (req, res) => {
 
 const createCar = async (req, res) => {
   try {
-    const { is_convertible, exterior, roof, wheels, interior, price, name } =
+    const { exterior, roof, wheels, interior, price, name } =
       req.body;
     const results = await pool.query(
       `
-      INSERT INTO cars (is_convertible, exterior, roof, wheels, interior, price, name)
-      VALUES ($1, $2, $3, $4, $5, $6, $7)
+      INSERT INTO cars (exterior, roof, wheels, interior, price, name)
+      VALUES ($1, $2, $3, $4, $5, $6)
       RETURNING *
     `,
-      [is_convertible, exterior, roof, wheels, interior, price, name],
+      [exterior, roof, wheels, interior, price, name],
     );
     res.status(201).json(results.rows[0]);
   } catch (error) {
@@ -50,16 +50,16 @@ const createCar = async (req, res) => {
 
 const editCar = async (req, res) => {
   try {
-    const { is_convertible, exterior, roof, wheels, interior, price, name } =
+    const { exterior, roof, wheels, interior, price, name } =
       req.body;
     const id = parseInt(req.params.id);
     const results = await pool.query(
       `
       UPDATE cars
-      SET is_convertible = $1, exterior = $2, roof = $3, wheels = $4, interior = $5, price = $6, name = $7
-      WHERE id = $8
+      SET exterior = $1, roof = $2, wheels = $3, interior = $4, price = $5, name = $6
+      WHERE id = $7
     `,
-      [is_convertible, exterior, roof, wheels, interior, price, name, id],
+      [exterior, roof, wheels, interior, price, name, id],
     );
     res.status(200).json(results.rows[0]);
   } catch (error) {
