@@ -36,8 +36,8 @@ const createCar = async (req, res) => {
       req.body;
     const results = await pool.query(
       `
-      INSERT INTO cars is_convertible, exterior, roof, wheels, interior, price, name
-      VALUES ($1, $2, $3, $5, $5, $6, $7)
+      INSERT INTO cars (is_convertible, exterior, roof, wheels, interior, price, name)
+      VALUES ($1, $2, $3, $4, $5, $6, $7)
       RETURNING *
     `,
       [is_convertible, exterior, roof, wheels, interior, price, name],
