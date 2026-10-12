@@ -1,0 +1,144 @@
+.customizer {
+    display: block;
+    width: min(900px, calc(100% - 32px));
+    margin: 48px auto;
+}
+
+.customizer-panel {
+    padding: 28px;
+    background: rgba(0, 0, 0, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+}
+
+.customizer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.price-display {
+    display: grid;
+    gap: 4px;
+    text-align: right;
+}
+
+.price-display span {
+    color: #d0d0d0;
+    font-size: 0.9rem;
+}
+
+.price-display strong {
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+.customizer-progress {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0 12px;
+    color: #d0d0d0;
+}
+
+.customizer-options {
+    min-height: 170px;
+    margin: 0;
+    padding: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+}
+
+.customizer-options legend {
+    padding: 0 8px;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.customizer-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.customizer-name {
+    display: grid;
+    gap: 8px;
+    max-width: 520px;
+}
+
+.customizer-name input {
+    margin-bottom: 0;
+}
+
+.empty-options {
+    padding: 20px 0;
+    color: #d0d0d0;
+}
+
+.customizer-review {
+    margin-top: 24px;
+}
+
+.customizer-review dl {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 24px;
+}
+
+.customizer-review dl > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.customizer-review dt {
+    color: #d0d0d0;
+}
+
+.customizer-review dd {
+    margin: 0;
+    text-align: right;
+}
+
+.customizer-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24px;
+}
+
+.customizer-actions button {
+    margin: 0;
+}
+
+.customizer-actions button:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+}
+
+.form-error {
+    color: #ffb3b3;
+}
+
+@media (max-width: 600px) {
+    .customizer {
+        margin: 24px auto;
+    }
+
+    .customizer-panel {
+        padding: 20px;
+    }
+
+    .customizer-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .price-display {
+        text-align: left;
+    }
+
+    .customizer-review dl {
+        grid-template-columns: 1fr;
+    }
+}
