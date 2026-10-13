@@ -9,6 +9,7 @@ const createCarsTable = async () => {
     await pool.query(`
       CREATE TABLE IF NOT EXISTS cars (
         id SERIAL PRIMARY KEY,
+        is_convertible BOOLEAN,
         exterior VARCHAR(255),
         roof VARCHAR(255),
         wheels VARCHAR(255),
