@@ -10,13 +10,26 @@ export const getCar = async (carId) => {
   return data;
 };
 
+const convertToBool = (value) => {
+  if (value === "Yes") {
+    return true;
+  }
+  if (value === "No") {
+    return false;
+  }
+  return value;
+};
+
 export const createCar = async (car) => {
   const response = await fetch("/cars", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(car),
+    body: JSON.stringify({
+      ...car,
+      is_convertible: convertToBool(car.is_convertible),
+    }),
   });
   const data = await response.json();
   return data;
@@ -28,7 +41,10 @@ export const editCar = async (car) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(car),
+    body: JSON.stringify({
+      ...car,
+      is_convertible: convertToBool(car.is_convertible),
+    }),
   });
   const data = await response.json();
   return data;
