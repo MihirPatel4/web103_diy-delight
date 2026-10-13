@@ -1,133 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createCar } from "../services/CarsAPI";
+import { getRoofAvailability, isRoofCompatible, } from "../utilities/roofValidation";
+import { stages } from "../data/stages"
 import "../css/CreateCar.css";
 
 const BASE_PRICE = 65000;
 
-const stages = [
-  {
-    key: "exterior",
-    label: "Exterior",
-    options: [
-      {
-        value: "Black",
-        priceAdjustment: 500,
-      },
-      {
-        value: "Red",
-        priceAdjustment: 1000,
-      },
-      {
-        value: "White",
-        priceAdjustment: 500,
-      },
-      {
-        value: "Silver",
-        priceAdjustment: 500,
-      },
-      {
-        value: "Blue",
-        priceAdjustment: 1000,
-      },
-      {
-        value: "Purple",
-        priceAdjustment: 1000,
-      },
-      {
-        value: "Pink",
-        priceAdjustment: 1000,
-      },
-    ],
-  },
-  {
-    key: "roof",
-    label: "Roof",
-    options: [
-      {
-        value: "Body Color",
-        priceAdjustment: 500,
-      },
-      {
-        value: "Carbon Flash Nacelles",
-        priceAdjustment: 1000,
-      },
-      {
-        value: "Visible Carbon Fiber",
-        priceAdjustment: 1000,
-      },
-    ],
-  },
-  {
-    key: "wheels",
-    label: "Wheels",
-    options: [
-      {
-        value: "Carbon Flash",
-        priceAdjustment: 500,
-      },
-      {
-        value: "Visible Carbon Fiber",
-        priceAdjustment: 600,
-      },
-      {
-        value: "Bronze Forged",
-        priceAdjustment: 1200,
-      },
-      {
-        value: "Satin Graphite",
-        priceAdjustment: 700,
-      },
-      {
-        value: "Sterling Silver",
-        priceAdjustment: 500,
-      },
-    ],
-  },
-  {
-    key: "interior",
-    label: "Interior",
-    options: [
-      {
-        value: "Jet Black",
-        priceAdjustment: 1000,
-      },
-      {
-        value: "Natural Dipped",
-        priceAdjustment: 1000,
-      },
-      {
-        value: "Red",
-        priceAdjustment: 1000,
-      },
-      {
-        value: "Cool Gray",
-        priceAdjustment: 1000,
-      },
-      {
-        value: "Red and Black",
-        priceAdjustment: 2000,
-      },
-    ],
-  },
-  {
-    key: "name",
-    label: "Name your car",
-    options: [],
-  },
-];
-
 const CreateCar = () => {
   const navigate = useNavigate();
   const [stageIndex, setStageIndex] = useState(0);
-  const [selections, setSelections] = useState({
-    is_convertible: null,
-    exterior: "",
-    roof: "",
-    wheels: "",
-    interior: "",
-    name: "",
-  });
+  const [selections, setSelections] = useState({ is_convertible: null, exterior: "", roof: "", wheels: "", interior: "", name: "" });
+  const [validationError, setValidationError] = useState("");
   const currentStage = stages[stageIndex];
 
   const price =
@@ -140,11 +24,34 @@ const CreateCar = () => {
     }, 0);
 
   const selectOption = (stage, value) => {
-    setSelections((current) => ({ ...current, [stage.key]: value }));
+    setValidationError("");
+    setSelections((current) => {
+      if (stage.key !== "is_convertible") {
+        return { ...current, [stage.key]: value };
+      }
+
+      return {
+        ...current,
+        is_convertible: value,
+        roof: isRoofCompatible(current.roof, value)
+          ? current.roof
+          : "",
+      };
+    });
   };
 
   const handleCreate = async (event) => {
     event.preventDefault();
+
+    const hasMissingSelection = stages.some((stage) => {
+      const value = selections[stage.key];
+      return !value;
+    });
+
+    if (hasMissingSelection) {
+      setValidationError("All options must be selected before creating.");
+      return;
+    }
 
     try {
       await createCar({
@@ -188,28 +95,33 @@ const CreateCar = () => {
                   name="name"
                   value={selections.name}
                   onChange={(event) => selectOption(currentStage, event.target.value)}
-                  required
                 />
               </label>
             ) : currentStage.options.length > 0 ? (
-              currentStage.options.map((option) => (
-                <label className="customizer-option" key={option.value}>
-                  <input
-                    type="radio"
-                    name={currentStage.key}
-                    value={String(option.value)}
-                    checked={selections[currentStage.key] === option.value}
-                    onChange={() => selectOption(currentStage, option.value)}
-                  />
-                  <span>
-                    {option.value}
-                    {option.priceAdjustment !== 0 &&
-                      ` (+$${option.priceAdjustment})`}
-                  </span>
-                </label>
-              ))
+              currentStage.options.map((option) => {
+                const availability = currentStage.key === "roof" ? getRoofAvailability(option.value, selections.is_convertible) : { disabled: false, message: "" };
+
+                return (
+                  <label className="customizer-option" key={option.value}>
+                    <input
+                      type="radio"
+                      name={currentStage.key}
+                      value={String(option.value)}
+                      checked={selections[currentStage.key] === option.value}
+                      disabled={availability.disabled}
+                      onChange={() => selectOption(currentStage, option.value)}
+                    />
+                    <span>
+                      {option.value}
+                      {option.priceAdjustment !== 0 &&
+                        ` (+$${option.priceAdjustment})`}
+                    </span>
+                    {availability.message && (<small className="option-availability" role="note">{availability.message}</small>)}
+                  </label>
+                );
+              })
             ) : (
-              <p className="empty-options">Options for this feature will be added soon. You can continue with no selection.</p>
+              <p className="empty-options">No options present</p>
             )}
           </fieldset>
 
@@ -238,18 +150,22 @@ const CreateCar = () => {
             </section>
           )}
 
+          {validationError && (<p className="form-error" role="alert">{validationError}</p>)}
+
           <footer className="customizer-actions">
-            <button type="button" className="secondary" onClick={() => setStageIndex((index) => index - 1)}>Back</button>
+            <button
+              type="button"
+              className="secondary"
+              onClick={() => { 
+                setValidationError("");
+                setStageIndex((index) => index - 1);
+              }}
+              disabled={stageIndex === 0}
+            >Back</button>
             {stageIndex < stages.length - 1 ? (
-              <button 
-                type="button" 
-                onClick={() => setStageIndex((index) => index + 1)}
-              >Next</button>
+              <button type="button" onClick={() => setStageIndex((index) => index + 1)}>Next</button>
             ) : (
-              <button
-                type="submit"
-                disabled={!selections.name.trim()}
-              >Create Car</button>
+              <button type="submit">Create Car</button>
             )}
           </footer>
         </form>
