@@ -38,10 +38,16 @@ const ViewCars = () => {
                 <strong>${car.price}</strong>
               </header>
               <dl>
+                <div>
+                  <dt>Car Type</dt>
+                  <dd>
+                    {car.is_convertible === true ? "Convertible" : "Coupe"}
+                  </dd>
+                </div>
                 {["exterior", "roof", "wheels", "interior"].map((attribute) => (
                   <div key={attribute}>
                     <dt>{attribute[0].toUpperCase() + attribute.slice(1)}</dt>
-                    <dd>{car[attribute] || "Not selected"}</dd>
+                    <dd>{car[attribute]}</dd>
                   </div>
                 ))}
               </dl>
