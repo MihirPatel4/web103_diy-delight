@@ -61,6 +61,14 @@
     gap: 10px;
 }
 
+.customizer-option:has(input:disabled) {
+    opacity: 0.75;
+}
+
+.option-availability {
+    color: #ffb3b3;
+}
+
 .customizer-name {
     display: grid;
     gap: 8px;
