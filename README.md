@@ -4,7 +4,7 @@ Submitted by: **Mihir Patel**
 
 About this web app: **This app allows the user to create a custom car with attributes of their choice.**
 
-Time spent: **4** hours
+Time spent: **5.5** hours
 
 ## Required Features
 
@@ -22,7 +22,7 @@ The following **required** functionality is completed:
 - [x] **The price of the `CustomItem` (e.g. car) changes dynamically as different options are selected _OR_ The app displays the total price of all features.**
 - [ ] **The visual interface changes in response to at least one customizable feature.**
 - [x] **The user can submit their choices to save the item to the list of created `CustomItem`s.**
-- [ ] **If a user submits a feature combo that is impossible, they should receive an appropriate error message and the item should not be saved to the database.**
+- [x] **If a user submits a feature combo that is impossible, they should receive an appropriate error message and the item should not be saved to the database.**
 - [x] **Users can view a list of all submitted `CustomItem`s.**
 - [ ] **Users can edit a submitted `CustomItem` from the list view of submitted `CustomItem`s.**
 - [ ] **Users can delete a submitted `CustomItem` from the list view of submitted `CustomItem`s.**
@@ -30,7 +30,7 @@ The following **required** functionality is completed:
 
 The following **optional** features are implemented:
 
-- [ ] Selecting particular options prevents incompatible options from being selected even before form submission
+- [x] Selecting particular options prevents incompatible options from being selected even before form submission
 
 <!-- ## Video Walkthrough
 
