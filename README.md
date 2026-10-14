@@ -4,7 +4,7 @@ Submitted by: **Mihir Patel**
 
 About this web app: **This app allows the user to create a custom car with attributes of their choice.**
 
-Time spent: **5.5** hours
+Time spent: **8.5** hours
 
 ## Required Features
 
@@ -14,35 +14,39 @@ The following **required** functionality is completed:
 
 - [x] **The web app uses React to display data from the API.**
 - [x] **The web app is connected to a PostgreSQL database, with an appropriately structured `CustomItem` table.**
-  - [ ] **NOTE: Your walkthrough added to the README must include a view of your Render dashboard demonstrating that your Postgres database is available**
-  - [ ] **NOTE: Your walkthrough added to the README must include a demonstration of your table contents. Use the psql command 'SELECT \* FROM tablename;' to display your table contents.**
+  - [x] **NOTE: Your walkthrough added to the README must include a view of your Render dashboard demonstrating that your Postgres database is available**
+  - [x] **NOTE: Your walkthrough added to the README must include a demonstration of your table contents. Use the psql command 'SELECT \* FROM tablename;' to display your table contents.**
 - [x] **Users can view **multiple** features of the `CustomItem` (e.g. car) they can customize, (e.g. wheels, exterior, etc.)**
 - [x] **Each customizable feature has multiple options to choose from (e.g. exterior could be red, blue, black, etc.)**
 - [ ] **On selecting each option, the displayed visual icon for the `CustomItem` updates to match the option the user chose.**
 - [x] **The price of the `CustomItem` (e.g. car) changes dynamically as different options are selected _OR_ The app displays the total price of all features.**
-- [ ] **The visual interface changes in response to at least one customizable feature.**
+- [x] **The visual interface changes in response to at least one customizable feature.**
 - [x] **The user can submit their choices to save the item to the list of created `CustomItem`s.**
 - [x] **If a user submits a feature combo that is impossible, they should receive an appropriate error message and the item should not be saved to the database.**
 - [x] **Users can view a list of all submitted `CustomItem`s.**
-- [ ] **Users can edit a submitted `CustomItem` from the list view of submitted `CustomItem`s.**
-- [ ] **Users can delete a submitted `CustomItem` from the list view of submitted `CustomItem`s.**
-- [ ] **Users can update or delete `CustomItem`s that have been created from the detail page.**
+- [x] **Users can edit a submitted `CustomItem` from the list view of submitted `CustomItem`s.**
+- [x] **Users can delete a submitted `CustomItem` from the list view of submitted `CustomItem`s.**
+- [x] **Users can update or delete `CustomItem`s that have been created from the detail page.**
 
 The following **optional** features are implemented:
 
 - [x] Selecting particular options prevents incompatible options from being selected even before form submission
 
-<!-- ## Video Walkthrough
+## Video Walkthrough
 
 Here's a walkthrough of implemented required features:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://i.imgur.com/s0hskzN.gif' title='Database Walkthrough' width='' alt='Database Walkthrough' />
 
-GIF created with LICEcap
+<img src='https://i.imgur.com/W8kywj4.gif' title='App Walkthrough' width='' alt='App Walkthrough' />
+
+GIFs created with LICEcap
 
 ## Notes
 
-Describe any challenges encountered while building the app or any additional context you'd like to add. -->
+Implementing the server and API code was easy, but setting up the frontend was challenging. Since the starter code uses PicoCSS, I had to add a lot of extra things to override the default styles. I also could not think of a simple way to have a displayed icon that changes according to each option chosen, so I decided not to include that feature.
+
+The app walkthrough GIF demonstrates an older version. In the current version of the app, the border of the car customizer changes to match the selection of the exterior color.
 
 ## License
 
