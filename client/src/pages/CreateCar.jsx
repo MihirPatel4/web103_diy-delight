@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createCar } from "../services/CarsAPI";
 import { getRoofAvailability, isRoofCompatible, } from "../utilities/roofValidation";
+import { calcPrice } from "../utilities/calcPrice";
 import { stages } from "../data/stages"
 import "../css/CreateCar.css";
-
-const BASE_PRICE = 65000;
 
 const CreateCar = () => {
   const navigate = useNavigate();
@@ -14,14 +13,7 @@ const CreateCar = () => {
   const [validationError, setValidationError] = useState("");
   const currentStage = stages[stageIndex];
 
-  const price =
-    BASE_PRICE +
-    stages.reduce((total, stage) => {
-      const selectedOption = stage.options.find(
-        (option) => option.value === selections[stage.key],
-      );
-      return total + (selectedOption?.priceAdjustment ?? 0);
-    }, 0);
+  const price = calcPrice(selections);
 
   const selectOption = (stage, value) => {
     setValidationError("");
