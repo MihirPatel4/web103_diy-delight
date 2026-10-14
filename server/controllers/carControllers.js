@@ -54,8 +54,9 @@ const editCar = async (req, res) => {
     const results = await pool.query(
       `
       UPDATE cars
-      SET is_convertible = $1 exterior = $2, roof = $3, wheels = $4, interior = $5, price = $6, name = $7
-      WHERE id = $7
+      SET is_convertible = $1, exterior = $2, roof = $3, wheels = $4, interior = $5, price = $6, name = $7
+      WHERE id = $8
+      RETURNING *
     `,
       [is_convertible, exterior, roof, wheels, interior, price, name, id],
     );
