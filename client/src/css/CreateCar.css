@@ -9,6 +9,7 @@
     background: rgba(0, 0, 0, 0.82);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 12px;
+    width: 700px;
 }
 
 .customizer-header {
