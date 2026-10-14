@@ -1,0 +1,111 @@
+.customizer {
+    display: block;
+    width: min(900px, calc(100% - 32px));
+    margin: 48px auto;
+}
+
+.customizer-panel {
+    padding: 28px;
+    background: rgba(0, 0, 0, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    width: 700px;
+}
+
+.customizer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.price-display {
+    display: grid;
+    gap: 4px;
+    text-align: right;
+}
+
+.price-display span {
+    color: #d0d0d0;
+    font-size: 0.9rem;
+}
+
+.price-display strong {
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+.customizer-options {
+    min-height: 170px;
+    margin: 0;
+    padding: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+}
+
+.customizer-options + .customizer-options {
+    margin-top: 18px;
+}
+
+.customizer-options legend {
+    padding: 0 8px;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.customizer-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.customizer-option:has(input:disabled) {
+    opacity: 0.75;
+}
+
+.option-availability {
+    color: #ffb3b3;
+}
+
+.customizer-name {
+    display: grid;
+    gap: 8px;
+    max-width: 520px;
+}
+
+.customizer-name input {
+    margin-bottom: 0;
+}
+
+.customizer-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24px;
+}
+
+.customizer-actions button {
+    margin: 0;
+}
+
+.form-error {
+    color: #ffb3b3;
+}
+
+@media (max-width: 600px) {
+    .customizer {
+        margin: 24px auto;
+    }
+
+    .customizer-panel {
+        padding: 20px;
+    }
+
+    .customizer-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .price-display {
+        text-align: left;
+    }
+}
