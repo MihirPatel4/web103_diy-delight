@@ -59,7 +59,10 @@ const CreateCar = () => {
 
   return (
     <main className="customizer">
-      <section className="customizer-panel">
+      <section
+        className="customizer-panel"
+        style={{ borderColor: selections.exterior || undefined }}
+      >
         <header className="customizer-header">
           <div>
             <h2>Customize your car</h2>
