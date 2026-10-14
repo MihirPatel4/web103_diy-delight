@@ -1,12 +1,20 @@
 export const getAllCars = async () => {
   const response = await fetch("/cars");
+
   const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data.error || `Request failed (${response.status})`);
+  }
   return data;
 };
 
 export const getCar = async (carId) => {
   const response = await fetch(`/cars/${carId}`);
+
   const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data.error || `Request failed (${response.status})`);
+  }
   return data;
 };
 
@@ -31,7 +39,11 @@ export const createCar = async (car) => {
       is_convertible: convertToBool(car.is_convertible),
     }),
   });
+
   const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data.error || `Request failed (${response.status})`);
+  }
   return data;
 };
 
@@ -46,7 +58,11 @@ export const editCar = async (car) => {
       is_convertible: convertToBool(car.is_convertible),
     }),
   });
+
   const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data.error || `Request failed (${response.status})`);
+  }
   return data;
 };
 
@@ -54,6 +70,9 @@ export const deleteCar = async (carId) => {
   const response = await fetch(`/cars/${carId}`, {
     method: "DELETE",
   });
-  const data = await response.json();
-  return data;
+
+  if (!response.ok) {
+    const data = await response.json();
+    throw new Error(data.error || `Request failed (${response.status})`);
+  }
 };
