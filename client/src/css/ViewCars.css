@@ -10,7 +10,7 @@
 
 .custom-car-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     margin-top: 100px;
     gap: 36px;
     justify-content: center;
