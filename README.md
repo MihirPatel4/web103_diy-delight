@@ -38,7 +38,7 @@ Here's a walkthrough of implemented required features:
 
 <img src='https://i.imgur.com/s0hskzN.gif' title='Database Walkthrough' width='' alt='Database Walkthrough' />
 
-<img src='https://i.imgur.com/W8kywj4.gif' title='App Walkthrough' width='' alt='App Walkthrough' />
+<img src='https://github.com/user-attachments/assets/6f6ef4c6-7d80-4321-a568-862d582589f7' title='App Walkthrough' width='' alt='App Walkthrough' />
 
 GIFs created with LICEcap
 
